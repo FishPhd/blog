@@ -2,40 +2,41 @@ import React, { DetailedHTMLProps, TimeHTMLAttributes } from "react";
 import Link from "next/link";
 import dayjs from "dayjs";
 import Card from "../Card/Card";
+import clsx from "clsx";
 
 export default function BlogSummaryCard({
   slug,
   title,
   publishedOn,
   abstract,
+  className,
 }: {
   slug: string;
   title: string;
   publishedOn: Date;
   abstract: string;
+  className?: string;
 }) {
+  console.log(publishedOn);
   const href = `/${slug}`;
   const humanizedDate = dayjs(publishedOn).locale("en").format("MMMM D, YYYY");
 
   return (
-    <Card className="max-w-[750px] mb-8 cursor-pointer group">
+    <Card className={clsx("max-w-screen-lg mb-8", className)}>
       <Link
         href={href}
         className="block text-3xl font-medium leading-snug no-underline  transition-colors duration-200 mb-1"
       >
         {title}
       </Link>
-      <time
-        dateTime={publishedOn.toDateString()}
-        className="block mb-4 font-medium text-lg text-neutral-500"
-      >
+      <p className="block mb-4 font-medium text-lg text-neutral-500">
         {humanizedDate}
-      </time>
+      </p>
       <p className="text-lg mb-0">
         {abstract}{" "}
         <Link
           href={href}
-          className="font-semibold underline group-hover:text-green-400 text-green-700"
+          className="font-semibold underline hover:text-green-400 text-green-700"
         >
           Continue reading{" "}
           <span className="inline-block font-normal transition-transform duration-200">

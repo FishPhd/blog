@@ -18,12 +18,20 @@ export function BlogHero({
   const humanizedDate = dayjs(publishedOn).locale("en").format("MMMM D, YYYY");
 
   return (
-    <header className={clsx(styles.wrapper, className)} {...delegated}>
-      <div className={styles.content}>
-        <h1>{title}</h1>
-        <p>
+    <header
+      className={clsx(
+        "relative flex flex-col justify-end items-center w-full mx-auto max-w-[65rem] pt-[calc(48px + 8vw)] pb-16",
+        className
+      )}
+      {...delegated}
+    >
+      <div className={"relative w-full"}>
+        <h1 className="mb-2 text-4xl font-bold">{title}</h1>
+        <p className="text-lg mb-0 text-green-800">
           Published on{" "}
-          <time dateTime={publishedOn.toDateString()}>{humanizedDate}</time>
+          <time className="font-medium" dateTime={publishedOn.toDateString()}>
+            {humanizedDate}
+          </time>
         </p>
       </div>
     </header>

@@ -1,18 +1,53 @@
-import React from "react";
+import { Suspense, cache } from "react";
 
-import styles from "./postSlug.module.css";
 import BlogHero from "@/components/BlogHero/BlogHero";
+import { loadBlogPost } from "@/utils/file-helpers";
+import { Metadata, ResolvingMetadata } from "next";
 
-function BlogPost() {
+const getBlogPost = cache(loadBlogPost);
+
+export async function generateMetadata(
+  { params: { postSlug } }: BlogPostProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const {
+    frontmatter: { abstract, title },
+  } = await getBlogPost(postSlug);
+
+  return {
+    title: `${title} • Bits & Bytes`,
+    description: abstract,
+  };
+}
+
+interface BlogPostProps {
+  params: { postSlug: string };
+}
+
+async function BlogPost({ params }: BlogPostProps) {
+  const {
+    content,
+    frontmatter: { abstract, publishedOn, slug, title },
+  } = await getBlogPost(params.postSlug);
+
+  if (!content) {
+    return <div>Post not found</div>;
+  }
+
   return (
-    <article className={styles.wrapper}>
-      <BlogHero title="Example post!" publishedOn={new Date()} />
-      <div className={styles.page}>
-        <p>This is where the blog post will go!</p>
-        <p>
-          You will need to use <em>MDX</em> to render all of the elements
-          created from the blog post in this spot.
-        </p>
+    <article className="z-10 py-20 px-10">
+      <BlogHero
+        className="!mt-10"
+        title={title}
+        publishedOn={new Date(publishedOn)}
+      />
+
+      <div
+        className={
+          "relative grid max-w-[80rem] mx-auto p-16 bg-white shadow-md rounded-lg border-green-200 border-1 px-36 py-24"
+        }
+      >
+        <Suspense fallback={<>Loading...</>}>{content}</Suspense>
       </div>
     </article>
   );

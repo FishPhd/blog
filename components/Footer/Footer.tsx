@@ -8,11 +8,11 @@ import DecorativeSwoops from "./DecorativeSwoops";
 
 export function Footer() {
   return (
-    <div className="relative flex justify-center text-center ">
-      <DecorativeSwoops />
+    <div className="flex justify-center text-center ">
+      {/* <DecorativeSwoops /> */}
       <div
         className={
-          "relative flex max-md:flex-col justify-between max-md:items-center items-baseline max-md:gap-16 gap-8 w-full pb-12 max-w-screen-2xl"
+          "flex max-md:flex-col justify-between max-md:items-center items-baseline max-md:gap-16 gap-8 w-full pb-12 max-w-screen-2xl mx-auto px-4"
         }
       >
         <div>
@@ -30,9 +30,9 @@ export function Footer() {
             how to build dynamic React apps like this one!
           </p>
         </div>
-        <nav>
-          <h2 className={"mt-6 p-0 text-lg"}>Links</h2>
-          <ul>
+        <nav className="text-left">
+          <h2 className={"mt-6 p-0 text-xl font-semibold"}>Links</h2>
+          <ul className="mt-3 space-y-1">
             <li>
               <Link href="/rss">RSS feed</Link>
             </li>
