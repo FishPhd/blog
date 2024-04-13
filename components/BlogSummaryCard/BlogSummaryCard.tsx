@@ -17,7 +17,6 @@ export default function BlogSummaryCard({
   abstract: string;
   className?: string;
 }) {
-  console.log(publishedOn);
   const href = `/${slug}`;
   const humanizedDate = dayjs(publishedOn).locale("en").format("MMMM D, YYYY");
 
