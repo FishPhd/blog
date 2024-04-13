@@ -2,6 +2,8 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import CodeSnippet from "@/components/CodeSnippet/CodeSnippet";
+import { Code } from "bright";
 
 export interface BlogPost {
   slug: string;
@@ -42,13 +44,15 @@ export async function getBlogPostList(): Promise<BlogPost[]> {
 
 export async function loadBlogPost(slug: string) {
   const rawContent = await readFile(`/content/${slug}.mdx`);
-  console.log("getting content!");
   return await compileMDX<{
     title: string;
     slug: string;
     publishedOn: string;
     abstract: string;
   }>({
+    components: {
+      pre: Code,
+    },
     source: rawContent,
     options: { parseFrontmatter: true },
   });
