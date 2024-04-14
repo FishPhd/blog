@@ -2,8 +2,8 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
-import CodeSnippet from "@/components/CodeSnippet/CodeSnippet";
 import { Code } from "bright";
+import theme from "./theme";
 
 export interface BlogPost {
   slug: string;
@@ -51,7 +51,7 @@ export async function loadBlogPost(slug: string) {
     abstract: string;
   }>({
     components: {
-      pre: Code,
+      pre: (props) => <Code {...props} theme={theme} />,
     },
     source: rawContent,
     options: { parseFrontmatter: true },
