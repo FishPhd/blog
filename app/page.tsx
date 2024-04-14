@@ -3,6 +3,7 @@ import BlogSummaryCard from "@/components/BlogSummaryCard/BlogSummaryCard";
 import { getBlogPostList } from "@/utils/file-helpers";
 import { Metadata } from "next";
 import { BLOG_TITLE } from "@/constants";
+import DivisionGroupsDemo from "@/components/DivisionGroupsDemo/DivisionGroupsDemo";
 
 export const metadata: Metadata = {
   title: BLOG_TITLE,

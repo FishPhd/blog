@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Code } from "bright";
 import theme from "./theme";
+import { DivisionGroupsDemoLazy } from "@/components/DivisionGroupsDemo/DivisionGroupsDemo";
 
 export interface BlogPost {
   slug: string;
@@ -52,6 +53,7 @@ export async function loadBlogPost(slug: string) {
   }>({
     components: {
       pre: (props) => <Code {...props} theme={theme} />,
+      DivisionGroupsDemo: DivisionGroupsDemoLazy,
     },
     source: rawContent,
     options: { parseFrontmatter: true },
