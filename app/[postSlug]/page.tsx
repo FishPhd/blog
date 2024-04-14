@@ -15,6 +15,7 @@ export async function generateMetadata(
   } = await getBlogPost(postSlug);
 
   return {
+    robots: "noindex",
     title: `${title} • Bits & Bytes`,
     description: abstract,
   };

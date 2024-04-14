@@ -7,6 +7,7 @@ import { BLOG_TITLE } from "@/constants";
 export const metadata: Metadata = {
   title: BLOG_TITLE,
   description: "A wonderful blog about JavaScript",
+  robots: "index, follow",
 };
 
 async function Home() {
