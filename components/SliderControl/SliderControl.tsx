@@ -20,6 +20,7 @@ function SliderControl({ label, value, ...delegated }: SliderControlProps) {
 
       {/* Slider */}
       <input
+        value={value}
         type="range"
         className="w-64 appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-green-100 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-[30px] [&::-webkit-slider-thumb]:w-[20px] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-600"
         {...delegated}
