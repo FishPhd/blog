@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Spline_Sans_Mono, Work_Sans } from "next/font/google";
+import { Cookie, Inter, Spline_Sans_Mono, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/utils/tailwind";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
 import { createContext, useState } from "react";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,10 +31,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const savedTheme =
+    (cookies().get("color-theme")?.value as "light" | "dark") ?? "light";
+
   return (
     <html lang="en" className={cn(mainFont.className)}>
       <body className="bg-gradient-to-t from-green-500 to-green-300 min-h-screen">
-        <ThemeProvider>
+        <ThemeProvider
+          theme={savedTheme}
+          changeTheme={async () => {
+            "use server";
+            cookies().set(
+              "color-theme",
+              savedTheme === "light" ? "dark" : "light"
+            );
+          }}
+        >
           <Header />
           <main>{children}</main>
           <Footer />

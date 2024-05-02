@@ -4,6 +4,8 @@ import BlogHero from "@/components/BlogHero/BlogHero";
 import { loadBlogPost } from "@/utils/file-helpers";
 import { Metadata, ResolvingMetadata } from "next";
 
+import { cookies } from "next/headers";
+
 const getBlogPost = cache(loadBlogPost);
 
 export async function generateMetadata(

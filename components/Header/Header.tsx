@@ -16,7 +16,7 @@ export function Header({
   className?: string;
   [key: string]: any;
 }) {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
     <header
@@ -41,7 +41,7 @@ export function Header({
         </button>
         <button
           onClick={() => {
-            setTheme(theme === "light" ? "dark" : "light");
+            changeTheme();
           }}
           className="hover:text-white"
         >

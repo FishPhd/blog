@@ -3,23 +3,25 @@ import { ReactNode, createContext, useState } from "react";
 
 interface ThemeContextType {
   theme: "light" | "dark";
-  setTheme: (theme: "light" | "dark") => void;
+  changeTheme: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: "light",
-  setTheme: () => {},
+  changeTheme: () => {},
 });
 
 export default function ThemeProvider({
   children,
+  theme,
+  changeTheme,
 }: Readonly<{
   children: ReactNode;
+  theme: "light" | "dark";
+  changeTheme: () => void;
 }>) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, changeTheme }}>
       <div className={theme}>{children}</div>
     </ThemeContext.Provider>
   );
