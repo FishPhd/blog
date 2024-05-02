@@ -81,7 +81,6 @@ export default function CircularColorsDemo() {
             onClick={() => {
               setPlaying(false);
               setElapsed(0);
-              setSelectedColorIndex(0);
             }}
           >
             <RotateCcw />

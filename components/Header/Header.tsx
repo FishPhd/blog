@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { Dispatch, SetStateAction, useContext } from "react";
 import clsx from "clsx";
 import { Rss, Sun, Moon } from "react-feather";
 
@@ -6,16 +7,17 @@ import Logo from "@/components/Logo";
 
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import { cn } from "@/utils/tailwind";
+import ThemeProvider, { ThemeContext } from "../Providers/ThemeProvider";
 
 export function Header({
-  theme,
   className,
   ...delegated
 }: {
-  theme: "light" | "dark";
   className?: string;
   [key: string]: any;
 }) {
+  const { theme, setTheme } = useContext(ThemeContext);
+
   return (
     <header
       className={cn(
@@ -37,8 +39,13 @@ export function Header({
           />
           <VisuallyHidden>View RSS feed</VisuallyHidden>
         </button>
-        <button className="hover:text-white">
-          <Sun size="1.5rem" />
+        <button
+          onClick={() => {
+            setTheme(theme === "light" ? "dark" : "light");
+          }}
+          className="hover:text-white"
+        >
+          {theme === "light" ? <Sun size="1.5rem" /> : <Moon size="1.5rem" />}
           <VisuallyHidden>Toggle dark / light mode</VisuallyHidden>
         </button>
       </div>

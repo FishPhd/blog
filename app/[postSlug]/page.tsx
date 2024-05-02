@@ -45,7 +45,7 @@ async function BlogPost({ params }: BlogPostProps) {
 
       <div
         className={
-          "relative grid max-w-[80rem] mx-auto p-16 bg-white shadow-md rounded-lg border-green-200 border-1 px-36 py-24"
+          "relative grid max-w-[80rem] mx-auto p-16 bg-white dark:bg-gray-600 dark:text-white shadow-md rounded-lg border-green-200 border-1 px-36 py-24"
         }
       >
         <Suspense fallback={<>Loading...</>}>{content}</Suspense>

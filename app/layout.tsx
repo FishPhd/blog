@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/utils/tailwind";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import ThemeProvider from "@/components/Providers/ThemeProvider";
+import { createContext, useState } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,15 +30,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = "light";
-
   return (
     <html lang="en" className={cn(mainFont.className)}>
       <body className="bg-gradient-to-t from-green-500 to-green-300 min-h-screen">
-        <Header theme={theme} />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
