@@ -70,6 +70,7 @@ export default function CircularColorsDemo() {
           <button
             onClick={() => {
               setPlaying((playing) => !playing);
+              setElapsed((elapsed) => elapsed + 1);
             }}
           >
             {!playing && <Play />}

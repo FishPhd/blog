@@ -34,6 +34,7 @@ export default function BlogSummaryCard({
       <p className="text-lg mb-0">
         {abstract}{" "}
         <Link
+          prefetch={true}
           href={href}
           className="font-semibold underline hover:text-green-400 text-green-700"
         >

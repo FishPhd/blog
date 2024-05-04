@@ -48,7 +48,8 @@ export default function RootLayout({
             "use server";
             cookies().set(
               "color-theme",
-              savedTheme === "light" ? "dark" : "light"
+              savedTheme === "light" ? "dark" : "light",
+              { expires: 1000 }
             );
           }}
         >
