@@ -23,6 +23,7 @@ export default function BlogSummaryCard({
   return (
     <Card className={clsx("max-w-screen-lg mb-8", className)}>
       <Link
+        prefetch={true}
         href={href}
         className="block text-3xl font-medium leading-snug no-underline  transition-colors duration-200 mb-1"
       >
