@@ -36,7 +36,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={cn(mainFont.className)}>
-      <body className="bg-gradient-to-t from-green-500 to-green-300 min-h-screen">
+      <body
+        className={cn(
+          "bg-gradient-to-t from-green-500 to-green-300 min-h-screen dark:from-red-400 dark:to-red-300",
+          { dark: savedTheme === "dark" }
+        )}
+      >
         <ThemeProvider
           theme={savedTheme}
           changeTheme={async () => {
